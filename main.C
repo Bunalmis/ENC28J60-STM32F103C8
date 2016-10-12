@@ -44,19 +44,16 @@ char dinamik[50];
 int ziyaret=1;
 int TextSize=1;
 
-//      Ziyaretcinin sansina 2 sayfadan birisi cikar 	
-
         while(1) 
          {
-           index= AddString(MyWeb1,&StartHtml);      // <HTML><TITLE></TITLE> ekler
-           index= AddString(index, (char*) "<BODY><H1>STM32F103C8 - ENC28J60</H1></BODY>");
-           sprintf(dinamik,"<BODY><H%d>Text Size=%d</H%d></BODY>",TextSize,TextSize,TextSize);
+           index= AddString(MyWeb1,&StartHtml);      
+           index= AddString(index, (char*) "<H1>STM32F103C8 - ENC28J60</H1>");
+           sprintf(dinamik,"<H%d>Text Size=%d</H%d>",TextSize,TextSize,TextSize);
            index=AddString(index, dinamik);            
            if (++TextSize>6) TextSize=1;
-           sprintf(dinamik,"<BODY><H4>Ziyaretci: %d </H4></BODY>",ziyaret);
+           sprintf(dinamik,"<H4>Ziyaretci: %d </H4>",ziyaret);
            index=AddString(index, dinamik);
            index=AddString(index,&Ver);
-           index=AddString(index,&EndHtml);          // </HTML> ekler
            *index=0;                                 // Sayfanin sonuna null karakteri ekler
            ziyaret=PageLoad(MyWeb1);                 // MyWeb1 alani gosterilecek
 
@@ -64,15 +61,14 @@ int TextSize=1;
 
 //         Radikal degisiklikleri MyWeb2 uzerinde yapalim
 
-           index= AddString(MyWeb2,&StartHtml);      // <HTML><TITLE></TITLE> ekler
-           index= AddString(index, (char*) "<BODY><H1>Merhaba, Picproje uyeleri</H1></BODY>");
+           index= AddString(MyWeb2,&StartHtml);      
+           index= AddString(index, (char*) "<H1>Merhaba, Picproje uyeleri</H1>");
            index=AddString(index,&Ver);
-           sprintf(dinamik,"<BODY><H2>Ziyaretci: %d </H2></BODY>",ziyaret);
+           sprintf(dinamik,"<H2>Ziyaretci: %d </H2>",ziyaret);
            index=AddString(index, dinamik);
-           sprintf(dinamik,"<BODY><H%d>Text Size=%d</H%d></BODY>",TextSize,TextSize,TextSize);
+           sprintf(dinamik,"<H%d>Text Size=%d</H%d>",TextSize,TextSize,TextSize);
            index=AddString(index, dinamik);            
            if (++TextSize>6) TextSize=1;
-           index=AddString(index,&EndHtml);          // </HTML> ekler
            *index=0;                                 // Sayfanin sonuna null karakteri ekler
 
            ziyaret=PageLoad(MyWeb2);                 // MyWeb2 alani yayinda
